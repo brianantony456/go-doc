@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+</head>
+<body>
+    <h1>Book Details</h1>
+    <div id="book-details"></div>
+    <a href="/books">Back to Book List</a>
+    <script>
+        const bookId = window.location.pathname.split("/")[2];
+        fetch(`/api/books/${bookId}`)
+        .then(response => response.json())
+        .then(data => {
+            const bookDetails = document.getElementById('book-details');
+            bookDetails.innerHTML = `<h2>${data.Title}</h2><p>Author: ${data.Author}</p><p>Quantity: ${data.Quantity}</p>`;
+        });
+    </script>
+</body>
+</html>

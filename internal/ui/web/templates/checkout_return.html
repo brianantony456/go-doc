@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout/Return Book</title>
+</head>
+<body>
+    <h1>Checkout/Return Book</h1>
+    <form id="checkout-form">
+        <label for="checkout-id">Book ID to Checkout:</label><br>
+        <input type="text" id="checkout-id" name="checkout-id"><br>
+        <button type="submit">Checkout</button>
+    </form>
+    <form id="return-form">
+        <label for="return-id">Book ID to Return:</label><br>
+        <input type="text" id="return-id" name="return-id"><br>
+        <button type="submit">Return</button>
+    </form>
+    <a href="/books">Back to Book List</a>
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const id = document.getElementById('checkout-id').value;
+            fetch(`/api/checkout?id=${id}`, {
+                method: 'PATCH'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`Checked out: ${data.Title} by ${data.Author}`);
+            });
+        });
+
+        document.getElementById('return-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const id = document.getElementById('return-id').value;
+            fetch(`/api/return?id=${id}`, {
+                method: 'PATCH'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`Returned: ${data.Title} by ${data.Author}`);
+            });
+        });
+    </script>
+</body>
+</html>

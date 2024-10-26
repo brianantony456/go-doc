@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+</head>
+<body>
+    <h1>Book List</h1>
+    <ul id="book-list"></ul>
+    <a href="/create">Create New Book</a>
+    <a href="/checkout">Checkout/Return Book</a>
+    <script>
+        fetch('/api/books')
+        .then(response => response.json())
+        .then(data => {
+            const bookList = document.getElementById('book-list');
+            data.forEach(book => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="/books/${book.id}">${book.title}</a> by ${book.author} (Quantity: ${book.quantity})`;
+                bookList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>

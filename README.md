@@ -14,7 +14,7 @@
 Create a module & run code
 
 ```bash
-go mod init github.com/brianantony456/go_tutorials` # Create module `<location>/<username>/<name_of_module>``
+go mod init github.com/brianantony456/go-doc`       # Create module `<location>/<username>/<name_of_module>``
 go build <file>.go                                  # Compile go code
 go run <file>.go                                    # Compiles & Runs the code
 
@@ -26,8 +26,4 @@ export GO11MODULE=on                                # Set to use the vendor
 
 
 ## Setup web app with gin framework
-```go
-// Get gin web framework
-go get github.com/gin-gonic/gin
-
-```
+[Go Blueprint](https://go-blueprint.dev/)
